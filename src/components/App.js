@@ -1,14 +1,27 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import callToApi from "../services/api";
-// import callToApi from '../services/api';
 import "../styles/App.scss";
+import CharacterList from "./CharacterList";
+import FilterByHouse from "./FIlterByHouse";
+import FilterByName from "./FilterByName";
 
 function App() {
+  const [characters, setCharacter] = useState([]);
+  const [searchCharacter, setSearchCharacter] = useState("");
+
   useEffect(() => {
-    callToApi().then((response) => {
-      console.log(response);
+    callToApi().then((data) => {
+      setCharacter(data);
     });
   }, []);
+
+  const handleSubmit = (ev) => {
+    ev.preventDefault();
+  };
+
+  const handleChangeSearchCharacter = (value) => {
+    setSearchCharacter(value);
+  };
 
   return (
     <>
@@ -16,32 +29,15 @@ function App() {
         <h1>Harry Potter</h1>
       </header>
       <main>
-        <form action="#">
-          <label htmlFor="character">Busca por personaje:</label>
-          <input type="text" name="character" id="character" />
-          <label htmlFor="house">Selecciona la casa:</label>
-          <select name="house" id="house">
-            <option value="Gryffindor">Gryffindor</option>
-          </select>
+        <form action="#" onSubmit={handleSubmit}>
+          <FilterByName
+            handleChangeSearchCharacter={handleChangeSearchCharacter}
+            searchCharacter={searchCharacter}
+          />
+          <FilterByHouse />
         </form>
         <section>
-          <ul>
-            <li>
-              <div className="image"></div>
-              <h2>Harry Potter</h2>
-              <p>Human</p>
-            </li>
-            <li>
-              <div className="image"></div>
-              <h2>Harry Potter</h2>
-              <p>Human</p>
-            </li>
-            <li>
-              <div className="image"></div>
-              <h2>Harry Potter</h2>
-              <p>Human</p>
-            </li>
-          </ul>
+          <CharacterList characters={characters} />
         </section>
       </main>
     </>
