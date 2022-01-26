@@ -2,12 +2,16 @@ import { useEffect, useState } from "react";
 import callToApi from "../services/api";
 import "../styles/App.scss";
 import CharacterList from "./CharacterList";
-import FilterByHouse from "./FIlterByHouse";
-import FilterByName from "./FilterByName";
+import Filters from "./Filters";
 
 function App() {
   const [characters, setCharacter] = useState([]);
   const [searchCharacter, setSearchCharacter] = useState("");
+  const [filterHouse, setFilterHouse] = useState([]);
+
+  const filteredCharacters = characters.filter((character) => {
+    return character.name.toLowerCase().includes(searchCharacter.toLowerCase());
+  });
 
   useEffect(() => {
     callToApi().then((data) => {
@@ -15,11 +19,7 @@ function App() {
     });
   }, []);
 
-  const handleSubmit = (ev) => {
-    ev.preventDefault();
-  };
-
-  const handleChangeSearchCharacter = (value) => {
+  const handleSearchCharacter = (value) => {
     setSearchCharacter(value);
   };
 
@@ -29,16 +29,11 @@ function App() {
         <h1>Harry Potter</h1>
       </header>
       <main>
-        <form action="#" onSubmit={handleSubmit}>
-          <FilterByName
-            handleChangeSearchCharacter={handleChangeSearchCharacter}
-            searchCharacter={searchCharacter}
-          />
-          <FilterByHouse />
-        </form>
-        <section>
-          <CharacterList characters={characters} />
-        </section>
+        <Filters
+          handleSearchCharacter={handleSearchCharacter}
+          searchCharacter={searchCharacter}
+        />
+        <CharacterList filteredCharacters={filteredCharacters} />
       </main>
     </>
   );

@@ -1,11 +1,17 @@
 import CharacterCard from "./CharacterCard";
 
 function CharacterList(props) {
-  const charactersListItem = props.characters.map((character, index) => {
-    return <CharacterCard key={index} character={character} />;
-  });
+  const charactersListItem = props.filteredCharacters.map(
+    (character, index) => {
+      return <CharacterCard key={index} character={character} />;
+    }
+  );
 
-  return <ul>{charactersListItem}</ul>;
+  return (
+    <section>
+      <ul>{charactersListItem}</ul>
+    </section>
+  );
 }
 
 export default CharacterList;
