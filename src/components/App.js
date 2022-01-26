@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import callToApi from "../services/api";
-import "../styles/App.scss";
 import CharacterDetail from "./CharacterDetail";
-import CharacterList from "./CharacterList";
+import CharactersList from "./CharactersList";
 import Filters from "./Filters";
+import "../styles/App.scss";
 
 function App() {
   const [characters, setCharacters] = useState([]);
@@ -45,9 +45,9 @@ function App() {
   };
 
   return (
-    <>
-      <header>
-        <h1>Harry Potter</h1>
+    <div className="body">
+      <header className="header">
+        <h1 className="header__title">Harry Potter</h1>
       </header>
       <main>
         <Switch>
@@ -57,7 +57,7 @@ function App() {
               searchCharacter={searchCharacter}
               selectHouse={selectHouse}
             />
-            <CharacterList
+            <CharactersList
               filteredCharacters={filteredCharacters}
               searchCharacter={searchCharacter}
             />
@@ -68,7 +68,7 @@ function App() {
           ></Route>
         </Switch>
       </main>
-    </>
+    </div>
   );
 }
 

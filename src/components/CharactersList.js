@@ -1,4 +1,5 @@
 import CharacterCard from "./CharacterCard";
+import "../styles/layout/CharactersList.scss";
 
 function CharacterList(props) {
   const charactersListItem =
@@ -14,8 +15,8 @@ function CharacterList(props) {
     );
 
   return (
-    <section>
-      <ul>{charactersListItem}</ul>
+    <section className="list">
+      <ul className="list__element">{charactersListItem}</ul>
     </section>
   );
 }

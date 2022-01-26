@@ -1,0 +1,12 @@
+.filters {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  &__form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

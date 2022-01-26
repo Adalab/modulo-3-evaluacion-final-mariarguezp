@@ -1,0 +1,11 @@
+.firstFieldset {
+  border: none;
+  padding: 10px 0;
+
+  &__input {
+    margin: 0 15px;
+    height: 22px;
+    border: 2px solid rgb(231, 217, 139);
+    background-color: whitesmoke;
+  }
+}

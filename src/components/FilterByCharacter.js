@@ -1,4 +1,6 @@
-function FilterByName(props) {
+import "../styles/layout/FilterByCharacter.scss";
+
+function FilterByCharacter(props) {
   const handleChange = (ev) => {
     props.handleFilter({
       key: "name",
@@ -7,7 +9,7 @@ function FilterByName(props) {
   };
 
   return (
-    <>
+    <fieldset className="firstFieldset">
       <label htmlFor="character">Busca por personaje:</label>
       <input
         type="text"
@@ -15,9 +17,10 @@ function FilterByName(props) {
         id="character"
         value={props.searchCharacter}
         onChange={handleChange}
+        className="firstFieldset__input"
       />
-    </>
+    </fieldset>
   );
 }
 
-export default FilterByName;
+export default FilterByCharacter;
