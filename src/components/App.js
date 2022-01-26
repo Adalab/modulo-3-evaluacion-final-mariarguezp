@@ -7,11 +7,17 @@ import Filters from "./Filters";
 function App() {
   const [characters, setCharacter] = useState([]);
   const [searchCharacter, setSearchCharacter] = useState("");
-  const [filterHouse, setFilterHouse] = useState([]);
+  const [selectHouse, setSelectHouse] = useState("");
 
-  const filteredCharacters = characters.filter((character) => {
-    return character.name.toLowerCase().includes(searchCharacter.toLowerCase());
-  });
+  const filteredCharacters = characters
+    .filter((character) => {
+      return character.name
+        .toLowerCase()
+        .includes(searchCharacter.toLowerCase());
+    })
+    .filter((character) => {
+      return character.house === selectHouse;
+    });
 
   useEffect(() => {
     callToApi().then((data) => {
@@ -19,8 +25,12 @@ function App() {
     });
   }, []);
 
-  const handleSearchCharacter = (value) => {
-    setSearchCharacter(value);
+  const handleFilter = (data) => {
+    if (data.key === "name") {
+      setSearchCharacter(data.value);
+    } else if (data.key === "house") {
+      setSelectHouse(data.value);
+    }
   };
 
   return (
@@ -30,8 +40,9 @@ function App() {
       </header>
       <main>
         <Filters
-          handleSearchCharacter={handleSearchCharacter}
+          handleFilter={handleFilter}
           searchCharacter={searchCharacter}
+          selectHouse={selectHouse}
         />
         <CharacterList filteredCharacters={filteredCharacters} />
       </main>

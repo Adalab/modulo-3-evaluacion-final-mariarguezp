@@ -10,10 +10,13 @@ function Filters(props) {
     <section>
       <form action="#" onSubmit={handleSubmit}>
         <FilterByName
-          handleSearchCharacter={props.handleSearchCharacter}
+          handleFilter={props.handleFilter}
           searchCharacter={props.searchCharacter}
         />
-        <FilterByHouse />
+        <FilterByHouse
+          handleFilter={props.handleFilter}
+          selectHouse={props.selectHouse}
+        />
       </form>
     </section>
   );

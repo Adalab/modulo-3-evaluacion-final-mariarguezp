@@ -1,6 +1,9 @@
 function FilterByName(props) {
   const handleChange = (ev) => {
-    props.handleSearchCharacter(ev.currentTarget.value);
+    props.handleFilter({
+      key: "name",
+      value: ev.currentTarget.value,
+    });
   };
 
   return (
