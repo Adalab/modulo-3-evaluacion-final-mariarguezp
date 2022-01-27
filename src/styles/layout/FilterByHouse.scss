@@ -1,12 +1,14 @@
+@import "../core/variables";
+
 .secondFieldset {
   border: none;
-  padding: 10px 0 90px;
+  padding: 10px 0 50px;
 
   &__select {
     margin: 0 15px;
     list-style: none;
     height: 22px;
-    border: 2px solid rgb(231, 217, 139);
-    background-color: whitesmoke;
+    border: 2px solid $colorSecondary;
+    background-color: $colorMain;
   }
 }

@@ -45,7 +45,7 @@ function App() {
   };
 
   return (
-    <div className="body">
+    <>
       <header className="header">
         <h1 className="header__title">Harry Potter</h1>
       </header>
@@ -68,7 +68,7 @@ function App() {
           ></Route>
         </Switch>
       </main>
-    </div>
+    </>
   );
 }
 
