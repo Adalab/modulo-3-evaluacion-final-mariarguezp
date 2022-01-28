@@ -1,6 +1,7 @@
 import FilterByCharacter from "./FilterByCharacter";
 import FilterByHouse from "./FilterByHouse";
 import "../styles/layout/Filters.scss";
+import FilterBySpecies from "./FIlterBySpecies";
 
 function Filters(props) {
   const handleSubmit = (ev) => {
@@ -17,6 +18,10 @@ function Filters(props) {
         <FilterByHouse
           handleFilter={props.handleFilter}
           selectHouse={props.selectHouse}
+        />
+        <FilterBySpecies
+          handleFilter={props.handleFilter}
+          searchSpecies={props.searchSpecies}
         />
       </form>
     </section>

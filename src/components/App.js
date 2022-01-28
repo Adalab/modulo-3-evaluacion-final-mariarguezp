@@ -10,6 +10,7 @@ function App() {
   const [characters, setCharacters] = useState([]);
   const [searchCharacter, setSearchCharacter] = useState("");
   const [selectHouse, setSelectHouse] = useState("Gryffindor");
+  const [searchSpecies, setSearchSpecies] = useState("");
 
   const filteredCharacters = characters
     .filter((character) => {
@@ -19,6 +20,11 @@ function App() {
     })
     .filter((character) => {
       return character.house === selectHouse;
+    })
+    .filter((character) => {
+      return character.species
+        .toLowerCase()
+        .includes(searchSpecies.toLowerCase());
     });
 
   useEffect(() => {
@@ -32,6 +38,8 @@ function App() {
       setSearchCharacter(data.value);
     } else if (data.key === "house") {
       setSelectHouse(data.value);
+    } else if (data.key === "species") {
+      setSearchSpecies(data.value);
     }
   };
 
